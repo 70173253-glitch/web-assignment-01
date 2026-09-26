@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>WebCraft - Home</title>
-
+     <link rel="shortcut icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwNRVy_yZeUT_Kvz0Q0zRwX-6-iA3KSbZGRkqXMpA28w&s=10" type="image/x-icon">  
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -20,7 +20,8 @@
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
             <!-- Logo -->
-            <a href="index.html" class="text-2xl font-bold text-blue-600">
+            <a href="index.html" class="text-2xl font-bold text-blue-600 flex gap-3">
+             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwNRVy_yZeUT_Kvz0Q0zRwX-6-iA3KSbZGRkqXMpA28w&s=10" width="45" alt="">
                 WebCraft
             </a>
 
@@ -1050,6 +1051,390 @@
     </div>
 
 </footer>
+
+
+<div class="max-w-7xl mx-auto px-6 py-8 bg-blue-50 border-b border-blue-100">
+    <h2 class="text-2xl font-bold text-gray-900">Lab 04 Task Checklist</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4 text-sm text-gray-700">
+        <div>✓ Array of Objects</div>
+        <div>✓ map() Card Display</div>
+        <div>✓ Add Object / push()</div>
+        <div>✓ Delete / filter()</div>
+        <div>✓ Edit + Update + Cancel Modal</div>
+        <div>✓ Search + 5 Filters</div>
+        <div>✓ 5 If–Else Conditions</div>
+        <div>✓ For Loop</div>
+        <div>✓ While Loop</div>
+        <div>✓ Loop + Conditions</div>
+    </div>
+</div>
+
+<!-- ================= LAB 04: JAVASCRIPT ARRAY OF OBJECTS + CONTROL STRUCTURES ================= -->
+<section id="lab04" class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-10">
+            <p class="text-blue-600 font-semibold">LAB 04</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
+                Student Project Records - Complete CRUD Lab
+            </h2>
+            <p class="text-gray-600 mt-4">
+                JavaScript Array of Objects, CRUD, Search Filters and Control Structures
+            </p>
+        </div>
+
+        <!-- Step 3: Add New Object Using a Form -->
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Add New Student</h3>
+            <form id="studentForm" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <input id="studentName" type="text" placeholder="Student Name"
+                    class="px-4 py-3 rounded-lg border border-gray-300" required>
+                <input id="studentProject" type="text" placeholder="Project"
+                    class="px-4 py-3 rounded-lg border border-gray-300" required>
+                <select id="studentStatus"
+                    class="px-4 py-3 rounded-lg border border-gray-300" required>
+                    <option value="Active">Active</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Pending">Pending</option>
+                </select>
+                <input id="studentMarks" type="number" min="0" max="100" placeholder="Marks"
+                    class="px-4 py-3 rounded-lg border border-gray-300" required>
+                <button type="submit"
+                    class="md:col-span-4 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">
+                    Add Student
+                </button>
+            </form>
+        </div>
+
+        <!-- Step 6: Search + Five Filter Options -->
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Search & Filters</h3>
+
+            <input id="searchInput" type="text"
+                placeholder="Search by student name or project..."
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 mb-4">
+
+            <div class="flex flex-wrap gap-3">
+                <button onclick="setFilter('all')" class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg">All</button>
+                <button onclick="setFilter('Active')" class="filter-btn bg-gray-200 px-4 py-2 rounded-lg">Active</button>
+                <button onclick="setFilter('Completed')" class="filter-btn bg-gray-200 px-4 py-2 rounded-lg">Completed</button>
+                <button onclick="setFilter('Pending')" class="filter-btn bg-gray-200 px-4 py-2 rounded-lg">Pending</button>
+                <button onclick="setFilter('High Marks')" class="filter-btn bg-gray-200 px-4 py-2 rounded-lg">High Marks (80+)</button>
+                <button onclick="setFilter('Low Marks')" class="filter-btn bg-gray-200 px-4 py-2 rounded-lg">Low Marks (&lt;80)</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Display Array of Objects using map() -->
+        <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-5">Student Cards</h3>
+            <div id="studentCards" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        </div>
+
+        <!-- Control Structures -->
+        <div class="mt-12 bg-gray-50 border border-gray-200 rounded-xl p-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-5">JavaScript Control Structures</h3>
+
+            <!-- Step 1: If-Else Logic -->
+            <div class="mb-8">
+                <h4 class="text-xl font-bold text-gray-900 mb-3">If–Else Results</h4>
+                <div id="ifElseResults" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+            </div>
+
+            <!-- Step 2: For Loop -->
+            <div class="mb-8">
+                <h4 class="text-xl font-bold text-gray-900 mb-3">For Loop Output</h4>
+                <div id="forLoopResults" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+            </div>
+
+            <!-- Step 3: While Loop -->
+            <div class="mb-8">
+                <h4 class="text-xl font-bold text-gray-900 mb-3">While Loop Output</h4>
+                <div id="whileLoopResults" class="space-y-2"></div>
+            </div>
+
+            <!-- Step 4: Combine Loops with Conditions -->
+            <div>
+                <h4 class="text-xl font-bold text-gray-900 mb-3">Loop + Condition Categories</h4>
+                <div id="combinedResults" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Edit Modal -->
+<div id="editModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
+    <div class="bg-white rounded-xl p-6 w-full max-w-lg">
+        <h3 class="text-2xl font-bold mb-5">Edit Student</h3>
+
+        <form id="editForm" class="space-y-4">
+            <input type="hidden" id="editId">
+
+            <input id="editName" type="text" placeholder="Student Name"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300" required>
+
+            <input id="editProject" type="text" placeholder="Project"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300" required>
+
+            <select id="editStatus"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300" required>
+                <option value="Active">Active</option>
+                <option value="Completed">Completed</option>
+                <option value="Pending">Pending</option>
+            </select>
+
+            <input id="editMarks" type="number" min="0" max="100" placeholder="Marks"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300" required>
+
+            <div class="flex gap-3 justify-end">
+                <button type="button" onclick="closeEditModal()"
+                    class="bg-gray-200 px-5 py-2 rounded-lg">Cancel</button>
+                <button type="submit"
+                    class="bg-blue-600 text-white px-5 py-2 rounded-lg">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+/* =========================================================
+   LAB 04 - ARRAY OF OBJECTS
+   ========================================================= */
+
+let students = [
+    { id: 1, name: "Ali Khan", project: "Web Development", status: "Active", marks: 88 },
+    { id: 2, name: "Sara Ahmed", project: "UI Design", status: "Completed", marks: 92 },
+    { id: 3, name: "Hamza Raza", project: "Database System", status: "Pending", marks: 74 },
+    { id: 4, name: "Ayesha Malik", project: "Mobile App", status: "Active", marks: 81 },
+    { id: 5, name: "Usman Tariq", project: "JavaScript Project", status: "Completed", marks: 69 }
+];
+
+let currentFilter = "all";
+
+/* Step 2: Display Array of Objects using map() */
+function displayStudents() {
+    const container = document.getElementById("studentCards");
+
+    const searchText = document.getElementById("searchInput").value.toLowerCase();
+
+    let filteredStudents = students.filter(student => {
+        const matchesSearch =
+            student.name.toLowerCase().includes(searchText) ||
+            student.project.toLowerCase().includes(searchText);
+
+        let matchesFilter = true;
+
+        if (currentFilter === "Active") {
+            matchesFilter = student.status === "Active";
+        } else if (currentFilter === "Completed") {
+            matchesFilter = student.status === "Completed";
+        } else if (currentFilter === "Pending") {
+            matchesFilter = student.status === "Pending";
+        } else if (currentFilter === "High Marks") {
+            matchesFilter = student.marks >= 80;
+        } else if (currentFilter === "Low Marks") {
+            matchesFilter = student.marks < 80;
+        }
+
+        return matchesSearch && matchesFilter;
+    });
+
+    container.innerHTML = filteredStudents.map(student => `
+        <div class="bg-white border border-gray-200 rounded-xl shadow-md p-6">
+            <h4 class="text-xl font-bold text-gray-900">${student.name}</h4>
+            <p class="text-gray-600 mt-2"><strong>Project:</strong> ${student.project}</p>
+            <p class="text-gray-600 mt-2"><strong>Status:</strong> ${student.status}</p>
+            <p class="text-gray-600 mt-2"><strong>Marks:</strong> ${student.marks}</p>
+
+            <div class="flex gap-3 mt-5">
+                <button onclick="openEditModal(${student.id})"
+                    class="bg-yellow-500 text-white px-4 py-2 rounded-lg">
+                    Edit
+                </button>
+
+                <button onclick="deleteStudent(${student.id})"
+                    class="bg-red-600 text-white px-4 py-2 rounded-lg">
+                    Delete
+                </button>
+            </div>
+        </div>
+    `).join("");
+
+    if (filteredStudents.length === 0) {
+        container.innerHTML = `
+            <div class="md:col-span-3 text-center text-gray-500 py-8">
+                No matching students found.
+            </div>
+        `;
+    }
+
+    runControlStructures();
+}
+
+/* Step 3: Add New Object using push() */
+document.getElementById("studentForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    students.push({
+        id: Date.now(),
+        name: document.getElementById("studentName").value,
+        project: document.getElementById("studentProject").value,
+        status: document.getElementById("studentStatus").value,
+        marks: Number(document.getElementById("studentMarks").value)
+    });
+
+    this.reset();
+    displayStudents();
+});
+
+/* Step 4: Delete using filter() */
+function deleteStudent(id) {
+    students = students.filter(student => student.id !== id);
+    displayStudents();
+}
+
+/* Step 5: Edit functionality */
+function openEditModal(id) {
+    const student = students.find(student => student.id === id);
+
+    if (!student) return;
+
+    document.getElementById("editId").value = student.id;
+    document.getElementById("editName").value = student.name;
+    document.getElementById("editProject").value = student.project;
+    document.getElementById("editStatus").value = student.status;
+    document.getElementById("editMarks").value = student.marks;
+
+    document.getElementById("editModal").classList.remove("hidden");
+}
+
+function closeEditModal() {
+    document.getElementById("editModal").classList.add("hidden");
+}
+
+document.getElementById("editForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const id = Number(document.getElementById("editId").value);
+
+    const student = students.find(student => student.id === id);
+
+    if (student) {
+        student.name = document.getElementById("editName").value;
+        student.project = document.getElementById("editProject").value;
+        student.status = document.getElementById("editStatus").value;
+        student.marks = Number(document.getElementById("editMarks").value);
+    }
+
+    closeEditModal();
+    displayStudents();
+});
+
+/* Step 6: Search Filters */
+function setFilter(filter) {
+    currentFilter = filter;
+    displayStudents();
+}
+
+document.getElementById("searchInput").addEventListener("input", displayStudents);
+
+/* =========================================================
+   CONTROL STRUCTURES
+   ========================================================= */
+
+function runControlStructures() {
+
+    /* Step 1: At least 5 if-else conditions */
+    const ifElseContainer = document.getElementById("ifElseResults");
+    ifElseContainer.innerHTML = students.map(student => {
+        let message;
+
+        if (student.marks >= 90) {
+            message = "Excellent performance";
+        } else if (student.marks >= 80) {
+            message = "Very good performance";
+        } else if (student.marks >= 70) {
+            message = "Good performance";
+        } else if (student.marks >= 60) {
+            message = "Satisfactory performance";
+        } else {
+            message = "Needs improvement";
+        }
+
+        return `
+            <div class="bg-white border rounded-lg p-4">
+                <strong>${student.name}</strong>
+                <span class="text-gray-600"> - ${message}</span>
+            </div>
+        `;
+    }).join("");
+
+    /* Step 2: For loop - display items as cards */
+    const forContainer = document.getElementById("forLoopResults");
+    forContainer.innerHTML = "";
+
+    for (let i = 0; i < students.length; i++) {
+        forContainer.innerHTML += `
+            <div class="bg-white border rounded-lg p-4">
+                <strong>${i + 1}. ${students[i].name}</strong>
+                <p class="text-gray-600">${students[i].project}</p>
+            </div>
+        `;
+    }
+
+    /* Step 3: While loop */
+    const whileContainer = document.getElementById("whileLoopResults");
+    whileContainer.innerHTML = "";
+
+    let index = 0;
+    while (index < students.length) {
+        whileContainer.innerHTML += `
+            <div class="bg-white border rounded-lg p-3">
+                ${index + 1}. ${students[index].name} - ${students[index].status}
+            </div>
+        `;
+        index++;
+    }
+
+    /* Step 4: Combine loops with conditions */
+    const combinedContainer = document.getElementById("combinedResults");
+    combinedContainer.innerHTML = "";
+
+    let highCount = 0;
+    let mediumCount = 0;
+    let lowCount = 0;
+
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].marks >= 80) {
+            highCount++;
+        } else if (students[i].marks >= 70) {
+            mediumCount++;
+        } else {
+            lowCount++;
+        }
+    }
+
+    combinedContainer.innerHTML = `
+        <div class="bg-green-100 rounded-lg p-5">
+            <h5 class="font-bold">High (80+)</h5>
+            <p class="text-2xl">${highCount}</p>
+        </div>
+
+        <div class="bg-yellow-100 rounded-lg p-5">
+            <h5 class="font-bold">Medium (70–79)</h5>
+            <p class="text-2xl">${mediumCount}</p>
+        </div>
+
+        <div class="bg-red-100 rounded-lg p-5">
+            <h5 class="font-bold">Low (&lt;70)</h5>
+            <p class="text-2xl">${lowCount}</p>
+        </div>
+    `;
+}
+
+/* Initial display */
+displayStudents();
+</script>
+
 </body>
 
 </html>
